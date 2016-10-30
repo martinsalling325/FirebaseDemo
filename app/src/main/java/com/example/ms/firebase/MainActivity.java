@@ -6,13 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseReference myDatabase;
+    String companyName;
+    String exchange;
+    String symbol;
 
     TextView textView;
     EditText editTextName;
@@ -34,12 +41,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonWriteClicked(View view)
     {
-        String companyName = editTextName.getText().toString();
-        String exchange = editTextExchange.getText().toString();
-        String symbol = editTextSymbol.getText().toString();
+        companyName = editTextName.getText().toString();
+        exchange = editTextExchange.getText().toString();
+        symbol = editTextSymbol.getText().toString();
 
-        Company newCompany = new Company(companyName, exchange, symbol);
+        myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        myDatabase.child("Exchange").child(exchange).child(symbol).setValue(newCompany);
+                if (!dataSnapshot.child("Exchange").child(exchange).hasChild(symbol)){
+
+                    Company newCompany = new Company(companyName, exchange, symbol);
+
+                    myDatabase.child("Exchange").child(exchange).child(symbol).setValue(newCompany);
+                    Toast.makeText(MainActivity.this, "Company " + companyName + " added to Firebase database", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+                    Toast.makeText(MainActivity.this, "Company exists already", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 }
