@@ -54,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
                     Company newCompany = new Company(companyName, exchange, symbol);
 
                     myDatabase.child("Exchange").child(exchange).child(symbol).setValue(newCompany);
-                    Toast.makeText(MainActivity.this, "Company " + companyName + " added to Firebase database", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Company " + companyName + " is added to Firebase database", Toast.LENGTH_SHORT).show();
                 }
 
                 else {
-                    Toast.makeText(MainActivity.this, "Company exists already", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Company already exists in Firebase database", Toast.LENGTH_SHORT).show();
                 }
             }
 
