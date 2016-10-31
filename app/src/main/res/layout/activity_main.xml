@@ -11,31 +11,56 @@
     tools:context="com.example.ms.firebase.MainActivity"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editTextCompanyName"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Company name"/>
-    <EditText
-        android:id="@+id/editTextExchange"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Exchange"/>
-    <EditText
-        android:id="@+id/editTextSymbol"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Symbol"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewCompany"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonWrite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Write to Database"
-        android:onClick="buttonWriteClicked"/>
+        <EditText
+            android:id="@+id/editTextCompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company name"/>
+        <EditText
+            android:id="@+id/editTextExchange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Exchange"/>
+        <EditText
+            android:id="@+id/editTextSymbol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Symbol"/>
+
+        <TextView
+            android:id="@+id/textViewCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/buttonWrite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Write to Database"
+            android:onClick="buttonWriteClicked"/>
+
+        <view
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            class="im.dacer.androidcharts.LineView"
+            android:id="@+id/line_view" />
+
+        <view
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            class="im.dacer.androidcharts.PieView"
+            android:id="@+id/pie_view" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>
