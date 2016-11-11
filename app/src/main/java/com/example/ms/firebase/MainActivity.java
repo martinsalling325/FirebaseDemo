@@ -1,5 +1,6 @@
 package com.example.ms.firebase;
 
+import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,9 @@ import im.dacer.androidcharts.PieView;
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseReference myDatabase;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+
     String companyName;
     String exchange;
     String symbol;
@@ -123,5 +127,34 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void buttonSetPrefClicked(View view) {
+
+        companyName = editTextName.getText().toString();
+        exchange = editTextExchange.getText().toString();
+        symbol = editTextSymbol.getText().toString();
+
+        preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        editor = preferences.edit();
+
+        editor.putString("companyName", companyName);
+        editor.putString("exchange", exchange);
+        editor.putString("symbol", symbol);
+
+        editor.apply();
+    }
+
+    public void buttonGetPrefClicked(View view) {
+
+        preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+
+        companyName = preferences.getString("companyName", "");
+        exchange = preferences.getString("exchange", "");
+        symbol = preferences.getString("symbol", "");
+
+        editTextName.setText(companyName);
+        editTextExchange.setText(exchange);
+        editTextSymbol.setText(symbol);
     }
 }

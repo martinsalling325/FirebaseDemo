@@ -41,14 +41,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/buttonWrite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Write to Database"
-            android:onClick="buttonWriteClicked"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <view
+                <Button
+                    android:id="@+id/buttonWrite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save in Firebase"
+                    android:onClick="buttonWriteClicked"/>
+                <Button
+                    android:id="@+id/buttonSetPref"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SetPref"
+                    android:onClick="buttonSetPrefClicked"/>
+                <Button
+                    android:id="@+id/buttonGetPref"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GetPref"
+                    android:onClick="buttonGetPrefClicked"/>
+
+            </LinearLayout>
+
+            <view
             android:layout_width="300dp"
             android:layout_height="200dp"
             class="im.dacer.androidcharts.LineView"
